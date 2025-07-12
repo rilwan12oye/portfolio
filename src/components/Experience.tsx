@@ -190,7 +190,7 @@ const Experience = () => {
     }
   ];
 
-  const totalYears = new Date().getFullYear() - 2019;
+  const totalYears = new Date().getFullYear() - 2022;
 
   return (
     <section id="experience" className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 dark:from-gray-900 dark:via-purple-900 dark:to-gray-900 bg-gray-50 from-gray-50 via-purple-50 to-gray-50">
@@ -267,7 +267,7 @@ const Experience = () => {
                 <div className="w-px h-8 sm:h-12 bg-gray-300 dark:bg-gray-600"></div>
                 <div className="text-center">
                   <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-                    4
+                    {experiences.length}
                   </div>
                   <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Companies</div>
                 </div>
