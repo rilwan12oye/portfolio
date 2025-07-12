@@ -144,8 +144,18 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-      
+         
+        {/* Status Badge */}
+        <div className={`flex justify-center mb-6 lg:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="group relative inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 backdrop-blur-sm hover:from-green-500/20 hover:to-emerald-500/20 transition-all duration-300">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400/20 to-emerald-400/20 blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+            <div className="relative flex items-center">
+              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-3 shadow-lg shadow-green-400/50"></div>
+              <span className="text-green-300 font-semibold text-sm sm:text-base">Available for Revolutionary Projects</span>
+              <ChevronRight size={14} className="ml-2 text-green-400 group-hover:translate-x-1 transition-transform duration-300 sm:w-4 sm:h-4" />
+            </div>
+          </div>
+        </div>
 
         {/* Main Content */}
         <div className="text-center space-y-8 lg:space-y-12">
