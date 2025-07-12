@@ -99,77 +99,77 @@ const Projects = () => {
       <div className="container mx-auto px-4">
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8 lg:mb-12 text-center">
               Featured <span className="bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">Projects</span>
             </h2>
             
             {/* Active Project Display */}
-            <div className="mb-12">
-              <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-3xl overflow-hidden transition-all duration-500 shadow-2xl">
-                <div className="grid lg:grid-cols-2 gap-0">
+            <div className="mb-8 lg:mb-12 px-4 sm:px-0">
+              <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl lg:rounded-3xl overflow-hidden transition-all duration-500 shadow-2xl">
+                <div className="grid lg:grid-cols-2 gap-0 min-h-[400px] lg:min-h-[500px]">
                   {/* Project Image */}
-                  <div className="relative overflow-hidden lg:h-96">
+                  <div className="relative overflow-hidden h-64 sm:h-80 lg:h-auto">
                     <img 
                       src={projects[activeProject].image} 
                       alt={projects[activeProject].title}
-                      className="w-full h-64 lg:h-full object-cover transition-transform duration-500"
+                      className="w-full h-full object-cover transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="flex space-x-4">
+                    <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
+                      <div className="flex space-x-3 sm:space-x-4">
                         <a 
                           href={projects[activeProject].github} 
-                          className="group bg-gray-800/80 backdrop-blur-sm p-3 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-110"
+                          className="group bg-gray-800/80 backdrop-blur-sm p-2 sm:p-3 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-110"
                           title="View Source Code"
                         >
-                          <Github size={20} className="text-white group-hover:text-gray-300" />
+                          <Github size={16} className="text-white group-hover:text-gray-300 sm:w-5 sm:h-5" />
                         </a>
                         <a 
                           href={projects[activeProject].live} 
-                          className="group bg-gradient-to-r from-green-500 to-teal-500 p-3 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-110"
+                          className="group bg-gradient-to-r from-green-500 to-teal-500 p-2 sm:p-3 rounded-full hover:from-green-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-110"
                           title="View Live Demo"
                         >
-                          <ExternalLink size={20} className="text-white" />
+                          <ExternalLink size={16} className="text-white sm:w-5 sm:h-5" />
                         </a>
                       </div>
                     </div>
                   </div>
                   
                   {/* Project Details */}
-                  <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="mb-6">
-                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+                  <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                    <div className="mb-4 lg:mb-6">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 lg:mb-4">
                         {projects[activeProject].title}
                       </h3>
-                      <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                      <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-4 lg:mb-6">
                         {projects[activeProject].description}
                       </p>
                     </div>
                     
-                    <div className="mb-8">
-                      <h4 className="text-white font-semibold mb-3">Technologies Used:</h4>
-                      <div className="flex flex-wrap gap-3">
+                    <div className="mb-6 lg:mb-8">
+                      <h4 className="text-white font-semibold mb-2 lg:mb-3 text-sm lg:text-base">Technologies Used:</h4>
+                      <div className="flex flex-wrap gap-2 lg:gap-3">
                         {projects[activeProject].technologies.map((tech, techIndex) => (
-                          <span key={techIndex} className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 px-3 py-2 rounded-lg text-sm border border-green-500/30 font-medium">
+                          <span key={techIndex} className="bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 px-2 sm:px-3 py-1 sm:py-2 rounded-md lg:rounded-lg text-xs sm:text-sm border border-green-500/30 font-medium">
                             {tech}
                           </span>
                         ))}
                       </div>
                     </div>
                     
-                    <div className="flex space-x-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       <a 
                         href={projects[activeProject].github} 
-                        className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-300 font-medium"
+                        className="flex items-center justify-center sm:justify-start gap-2 text-gray-300 hover:text-white transition-colors duration-300 font-medium text-sm lg:text-base"
                       >
-                        <Github size={18} />
+                        <Github size={16} className="lg:w-[18px] lg:h-[18px]" />
                         View Code
                       </a>
                       <a 
                         href={projects[activeProject].live} 
-                        className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-300 font-medium"
+                        className="flex items-center justify-center sm:justify-start gap-2 text-green-400 hover:text-green-300 transition-colors duration-300 font-medium text-sm lg:text-base"
                       >
-                        <Play size={18} />
+                        <Play size={16} className="lg:w-[18px] lg:h-[18px]" />
                         Live Demo
                       </a>
                     </div>
@@ -179,30 +179,30 @@ const Projects = () => {
             </div>
 
             {/* Navigation Controls */}
-            <div className="flex justify-center items-center gap-8">
+            <div className="flex justify-center items-center gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0">
               <button
                 onClick={prevProject}
-                className="group bg-white/10 backdrop-blur-sm p-4 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-110"
+                className="group bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-110"
                 title="Previous Project"
               >
-                <ChevronLeft size={24} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
+                <ChevronLeft size={20} className="text-gray-300 group-hover:text-white transition-colors duration-300 sm:w-6 sm:h-6" />
               </button>
               
               <div className="text-center">
-                <div className="text-white font-semibold text-lg mb-1">
+                <div className="text-white font-semibold text-base sm:text-lg mb-1">
                   {activeProject + 1} of {projects.length}
                 </div>
-                <div className="text-gray-400 text-sm">
+                <div className="text-gray-400 text-xs sm:text-sm">
                   Featured Projects
                 </div>
               </div>
               
               <button
                 onClick={nextProject}
-                className="group bg-white/10 backdrop-blur-sm p-4 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-110"
+                className="group bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 transform hover:scale-110"
                 title="Next Project"
               >
-                <ChevronRight size={24} className="text-gray-300 group-hover:text-white transition-colors duration-300" />
+                <ChevronRight size={20} className="text-gray-300 group-hover:text-white transition-colors duration-300 sm:w-6 sm:h-6" />
               </button>
             </div>
 

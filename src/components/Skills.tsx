@@ -367,56 +367,56 @@ const Skills = () => {
       <div className="container mx-auto px-4">
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto">
-            <h2 
+            <h2
               id="skills-heading"
-              className="text-4xl md:text-5xl font-bold text-white mb-4 text-center"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 lg:mb-4 text-center"
             >
               My <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Skills</span>
             </h2>
-            <p className="text-gray-300 text-center mb-12 max-w-2xl mx-auto">
+            <p className="text-gray-300 text-center mb-8 lg:mb-12 max-w-2xl mx-auto text-sm sm:text-base px-4 sm:px-0">
               A comprehensive overview of my technical expertise across blockchain development, 
               software engineering, and modern development practices.
             </p>
             
             {/* Category Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-8 lg:mb-12 px-4 sm:px-0">
               {skillCategories.map((category, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveCategory(index)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 lg:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                     activeCategory === index
                       ? `bg-gradient-to-r ${category.color} text-white shadow-lg transform scale-105`
                       : 'bg-white/10 backdrop-blur-sm text-gray-300 hover:bg-white/20 border border-white/20'
                   }`}
                   aria-pressed={activeCategory === index}
                 >
-                  {category.icon}
+                  <span className="w-3 h-3 sm:w-4 sm:h-4">{category.icon}</span>
                   <span className="hidden sm:inline">{category.title}</span>
                 </button>
               ))}
             </div>
 
             {/* Active Category Display */}
-            <div className="mb-12">
-              <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 transition-all duration-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`p-3 rounded-xl bg-gradient-to-r ${skillCategories[activeCategory].color} text-white`}>
+            <div className="mb-8 lg:mb-12 px-4 sm:px-0">
+              <div className="bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-500">
+                <div className="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
+                  <div className={`p-2 sm:p-3 rounded-lg lg:rounded-xl bg-gradient-to-r ${skillCategories[activeCategory].color} text-white`}>
                     {skillCategories[activeCategory].icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">
                     {skillCategories[activeCategory].title}
                   </h3>
                 </div>
                 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
                   {skillCategories[activeCategory].skills.map((skill, skillIndex) => (
                     <div 
                       key={skillIndex}
-                      className="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm p-4 lg:p-6 rounded-lg lg:rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-white/20"
                     >
-                      <div className="flex justify-between items-start mb-3">
-                        <h4 className="font-semibold text-white text-lg">
+                      <div className="flex justify-between items-start mb-2 lg:mb-3">
+                        <h4 className="font-semibold text-white text-base lg:text-lg">
                           {skill.name}
                         </h4>
                         {skill.link && (
@@ -424,15 +424,15 @@ const Skills = () => {
                             href={skill.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`p-2 rounded-lg bg-gradient-to-r ${skillCategories[activeCategory].color} text-white hover:shadow-lg transition-all duration-200 transform hover:scale-110`}
+                            className={`p-1.5 lg:p-2 rounded-md lg:rounded-lg bg-gradient-to-r ${skillCategories[activeCategory].color} text-white hover:shadow-lg transition-all duration-200 transform hover:scale-110 flex-shrink-0`}
                             title={`Learn more about ${skill.name}`}
                           >
-                            <ExternalLink size={16} />
+                            <ExternalLink size={14} className="lg:w-4 lg:h-4" />
                           </a>
                         )}
                       </div>
                       
-                      <p className="text-gray-300 text-sm">
+                      <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                         {skill.description}
                       </p>
                     </div>

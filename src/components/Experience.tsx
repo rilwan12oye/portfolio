@@ -242,153 +242,153 @@ const Experience = () => {
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Header Section */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-900/30 dark:to-red-900/30 px-4 py-2 rounded-full mb-6">
+            <div className="text-center mb-12 lg:mb-16">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-900/30 dark:to-red-900/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 lg:mb-6">
                 <Briefcase size={16} className="text-orange-400" />
-                <span className="text-orange-600 dark:text-orange-300 font-medium">Professional Journey</span>
+                <span className="text-orange-600 dark:text-orange-300 font-medium text-sm sm:text-base">Professional Journey</span>
               </div>
               
-              <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white mb-4 lg:mb-6">
                 Work <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Experience</span>
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
                 {totalYears}+ years of building revolutionary blockchain solutions, from smart contracts to protocol architecture, 
                 with a proven track record of delivering secure, scalable, and innovative systems.
               </p>
 
               {/* Quick Stats */}
-              <div className="flex flex-wrap justify-center gap-8 mt-8">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 mt-6 lg:mt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                  <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                     {totalYears}+
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-sm">Years Experience</div>
+                  <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Years Experience</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300 dark:bg-gray-600"></div>
+                <div className="w-px h-8 sm:h-12 bg-gray-300 dark:bg-gray-600"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                  <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                     4
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-sm">Companies</div>
+                  <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Companies</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300 dark:bg-gray-600"></div>
+                <div className="w-px h-8 sm:h-12 bg-gray-300 dark:bg-gray-600"></div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                  <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                     $100M+
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-sm">TVL Managed</div>
+                  <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">TVL Managed</div>
                 </div>
               </div>
             </div>
 
             {/* Experience Timeline Navigation */}
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-8 lg:mb-12 px-4 sm:px-0">
               {experiences.map((exp, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveExperience(index)}
-                  className={`group flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                  className={`group flex items-center gap-2 sm:gap-3 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-lg lg:rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                     activeExperience === index
                       ? `bg-gradient-to-r ${exp.gradient} text-white shadow-lg transform scale-105`
                       : 'bg-white/80 dark:bg-white/10 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-white/20 border border-gray-200 dark:border-white/20 shadow-sm'
                   }`}
                 >
-                  <Building size={16} />
+                  <Building size={14} className="sm:w-4 sm:h-4" />
                   <div className="text-left">
-                    <div className="font-semibold">{exp.company}</div>
-                    <div className="text-xs opacity-75">{exp.duration}</div>
+                    <div className="font-semibold text-xs sm:text-sm">{exp.company}</div>
+                    <div className="text-xs opacity-75 hidden sm:block">{exp.duration}</div>
                   </div>
                 </button>
               ))}
             </div>
 
             {/* Active Experience Display */}
-            <div className={`mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="bg-white/90 dark:bg-white/10 backdrop-blur-sm border-2 border-gray-200 dark:border-white/20 rounded-3xl overflow-hidden shadow-2xl">
+            <div className={`mb-12 lg:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="bg-white/90 dark:bg-white/10 backdrop-blur-sm border-2 border-gray-200 dark:border-white/20 rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl mx-4 sm:mx-0">
                 <div className="grid lg:grid-cols-3 gap-0">
                   {/* Company Info Sidebar */}
-                  <div className={`bg-gradient-to-br ${experiences[activeExperience].gradient} p-8 lg:p-12 text-white relative overflow-hidden`}>
+                  <div className={`bg-gradient-to-br ${experiences[activeExperience].gradient} p-6 sm:p-8 lg:p-12 text-white relative overflow-hidden`}>
                     <div className="absolute inset-0 bg-black/20"></div>
                     <div className="relative z-10">
-                      <div className="mb-8">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-                            <Building size={24} />
+                      <div className="mb-6 lg:mb-8">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-3 lg:mb-4">
+                          <div className="p-2 sm:p-3 bg-white/20 backdrop-blur-sm rounded-lg lg:rounded-xl">
+                            <Building size={20} className="sm:w-6 sm:h-6" />
                           </div>
                           {experiences[activeExperience].website && (
                             <a 
                               href={experiences[activeExperience].website} 
-                              className="p-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-all duration-300"
+                              className="p-1.5 sm:p-2 bg-white/20 backdrop-blur-sm rounded-md lg:rounded-lg hover:bg-white/30 transition-all duration-300"
                               title="Visit Company Website"
                             >
-                              <ExternalLink size={16} />
+                              <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                             </a>
                           )}
                         </div>
                         
-                        <h3 className="text-3xl font-bold mb-2">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">
                           {experiences[activeExperience].company}
                         </h3>
-                        <p className="text-xl font-semibold mb-4 text-white/90">
+                        <p className="text-base sm:text-lg lg:text-xl font-semibold mb-3 lg:mb-4 text-white/90">
                           {experiences[activeExperience].position}
                         </p>
                         
-                        <div className="space-y-3 text-white/80">
+                        <div className="space-y-2 lg:space-y-3 text-white/80 text-sm lg:text-base">
                           <div className="flex items-center gap-2">
-                            <Calendar size={16} />
+                            <Calendar size={14} className="lg:w-4 lg:h-4" />
                             <span>{experiences[activeExperience].duration}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <MapPin size={16} />
+                            <MapPin size={14} className="lg:w-4 lg:h-4" />
                             <span>{experiences[activeExperience].location}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Briefcase size={16} />
+                            <Briefcase size={14} className="lg:w-4 lg:h-4" />
                             <span>{experiences[activeExperience].type}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="p-4 bg-white/10 backdrop-blur-sm rounded-xl">
-                          <div className="text-sm font-semibold mb-1">Industry</div>
-                          <div className="text-white/90">{experiences[activeExperience].industry}</div>
+                      <div className="space-y-3 lg:space-y-4">
+                        <div className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl">
+                          <div className="text-xs lg:text-sm font-semibold mb-1">Industry</div>
+                          <div className="text-white/90 text-sm lg:text-base">{experiences[activeExperience].industry}</div>
                         </div>
-                        <div className="p-4 bg-white/10 backdrop-blur-sm rounded-xl">
-                          <div className="text-sm font-semibold mb-1">Company Size</div>
-                          <div className="text-white/90">{experiences[activeExperience].companySize}</div>
+                        <div className="p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl">
+                          <div className="text-xs lg:text-sm font-semibold mb-1">Company Size</div>
+                          <div className="text-white/90 text-sm lg:text-base">{experiences[activeExperience].companySize}</div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   {/* Experience Details */}
-                  <div className="lg:col-span-2 p-8 lg:p-12">
-                    <div className="mb-8">
-                      <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Role Overview</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                  <div className="lg:col-span-2 p-6 sm:p-8 lg:p-12">
+                    <div className="mb-6 lg:mb-8">
+                      <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-4">Role Overview</h4>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed">
                         {experiences[activeExperience].description}
                       </p>
                     </div>
 
                     {/* Key Achievements */}
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                        <Award size={20} className="text-yellow-400" />
+                    <div className="mb-6 lg:mb-8">
+                      <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 lg:mb-6 flex items-center gap-2">
+                        <Award size={18} className="text-yellow-400 sm:w-5 sm:h-5" />
                         Key Achievements
                       </h4>
-                      <div className="grid gap-4">
+                      <div className="space-y-3 lg:space-y-4">
                         {experiences[activeExperience].achievements.map((achievement, achIndex) => (
-                          <div key={achIndex} className="group flex items-start gap-4 p-4 bg-gray-50 dark:bg-white/5 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300">
-                            <div className={`bg-gradient-to-r ${experiences[activeExperience].gradient} p-2 rounded-lg text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                          <div key={achIndex} className="group flex items-start gap-3 lg:gap-4 p-3 lg:p-4 bg-gray-50 dark:bg-white/5 backdrop-blur-sm rounded-lg lg:rounded-xl border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300">
+                            <div className={`bg-gradient-to-r ${experiences[activeExperience].gradient} p-1.5 lg:p-2 rounded-md lg:rounded-lg text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                               {achievement.icon}
                             </div>
                             <div className="flex-1">
-                              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-2">
+                              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-2 text-sm lg:text-base">
                                 {achievement.text}
                               </p>
-                              <div className={`inline-flex items-center gap-1 px-3 py-1 bg-gradient-to-r ${experiences[activeExperience].gradient} bg-opacity-20 rounded-full`}>
-                                <Star size={12} className="text-yellow-400" />
+                              <div className={`inline-flex items-center gap-1 px-2 lg:px-3 py-1 bg-gradient-to-r ${experiences[activeExperience].gradient} bg-opacity-20 rounded-full`}>
+                                <Star size={10} className="text-yellow-400 lg:w-3 lg:h-3" />
                                 <span className="text-xs font-semibold text-gray-800 dark:text-white">
                                   {achievement.impact}
                                 </span>
@@ -400,16 +400,16 @@ const Experience = () => {
                     </div>
 
                     {/* Technologies */}
-                    <div className="mb-8">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <Code2 size={20} className="text-blue-400" />
+                    <div className="mb-6 lg:mb-8">
+                      <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-4 flex items-center gap-2">
+                        <Code2 size={18} className="text-blue-400 sm:w-5 sm:h-5" />
                         Technologies Used
                       </h4>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2 lg:gap-3">
                         {experiences[activeExperience].technologies.map((tech, techIndex) => (
                           <span 
                             key={techIndex} 
-                            className={`bg-gradient-to-r ${experiences[activeExperience].gradient} bg-opacity-20 text-gray-800 dark:text-white px-4 py-2 rounded-lg text-sm border border-gray-300 dark:border-white/20 font-medium hover:scale-105 transition-transform duration-300`}
+                            className={`bg-gradient-to-r ${experiences[activeExperience].gradient} bg-opacity-20 text-gray-800 dark:text-white px-2 sm:px-3 lg:px-4 py-1 sm:py-2 rounded-md lg:rounded-lg text-xs sm:text-sm border border-gray-300 dark:border-white/20 font-medium hover:scale-105 transition-transform duration-300`}
                           >
                             {tech}
                           </span>
@@ -419,15 +419,15 @@ const Experience = () => {
 
                     {/* Responsibilities */}
                     <div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <Users size={20} className="text-green-400" />
+                      <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 lg:mb-4 flex items-center gap-2">
+                        <Users size={18} className="text-green-400 sm:w-5 sm:h-5" />
                         Key Responsibilities
                       </h4>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2 lg:space-y-3">
                         {experiences[activeExperience].responsibilities.map((responsibility, respIndex) => (
-                          <li key={respIndex} className="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-                            <ChevronRight size={16} className="text-purple-400 mt-1 flex-shrink-0" />
-                            <span>{responsibility}</span>
+                          <li key={respIndex} className="flex items-start gap-2 lg:gap-3 text-gray-600 dark:text-gray-300 text-sm lg:text-base">
+                            <ChevronRight size={14} className="text-purple-400 mt-1 flex-shrink-0 lg:w-4 lg:h-4" />
+                            <span className="leading-relaxed">{responsibility}</span>
                           </li>
                         ))}
                       </ul>
