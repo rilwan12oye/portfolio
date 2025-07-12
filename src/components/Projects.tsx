@@ -188,14 +188,7 @@ const Projects = () => {
                 <ChevronLeft size={20} className="text-gray-300 group-hover:text-white transition-colors duration-300 sm:w-6 sm:h-6" />
               </button>
               
-              <div className="text-center">
-                <div className="text-white font-semibold text-base sm:text-lg mb-1">
-                  {activeProject + 1} of {projects.length}
-                </div>
-                <div className="text-gray-400 text-xs sm:text-sm">
-                  Featured Projects
-                </div>
-              </div>
+              
               
               <button
                 onClick={nextProject}
