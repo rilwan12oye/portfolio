@@ -229,11 +229,11 @@ const About = () => {
             </div>
 
             {/* Hero Profile Section */}
-            <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-16 lg:mb-24">
               {/* Left side - Enhanced Profile */}
               <div className={`flex flex-col ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
                 {/* Enhanced Profile Image with Multiple Effects */}
-                <div className="relative group mb-8">
+                <div className="relative group mb-6 lg:mb-8">
                   {/* Outer glow effect */}
                   <div className="absolute -inset-8 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-all duration-700 animate-pulse"></div>
                   
@@ -241,7 +241,7 @@ const About = () => {
                   <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-spin" style={{animationDuration: '8s'}}></div>
                   
                   {/* Main image container */}
-                  <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto lg:mx-0 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 p-2 shadow-2xl group-hover:shadow-purple-500/25 transition-all duration-500">
+                  <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 mx-auto lg:mx-0 rounded-full bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 p-2 shadow-2xl group-hover:shadow-purple-500/25 transition-all duration-500">
                     <div className="w-full h-full rounded-full bg-gray-900/90 backdrop-blur-sm overflow-hidden border-4 border-white/20 group-hover:border-white/40 transition-all duration-500">
                       <img 
                         src="/369556231_6748106998579271_2348261776859574740_n.jpg" 
@@ -262,30 +262,30 @@ const About = () => {
                 </div>
                 
                 {/* Professional Info Cards */}
-                <div className="space-y-4">
+                <div className="space-y-3 lg:space-y-4">
                   {/* Name and Title Card */}
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-center lg:text-left group hover:bg-white/15 transition-all duration-300">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 lg:p-6 text-center lg:text-left group hover:bg-white/15 transition-all duration-300">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
                       Michael Dean Oyewole
                     </h3>
-                    <p className="text-lg text-purple-300 mb-3">
+                    <p className="text-base lg:text-lg text-purple-300 mb-3">
                       Senior Blockchain Engineer
                     </p>
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-300">
                       <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-sm">Available for Revolutionary Projects</span>
+                      <span className="text-xs sm:text-sm">Available for Revolutionary Projects</span>
                     </div>
                   </div>
           
                   
                   {/* Expertise Tags */}
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
-                    <h4 className="text-white font-semibold mb-4 text-center lg:text-left">Core Expertise</h4>
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 lg:p-6">
+                    <h4 className="text-white font-semibold mb-3 lg:mb-4 text-center lg:text-left text-sm lg:text-base">Core Expertise</h4>
                     <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                       {['Protocol Engineering', 'Smart Contracts', 'DeFi', 'Layer 2', 'Security Audits', 'Gas Optimization'].map((skill, index) => (
                         <span 
                           key={skill}
-                          className="px-3 py-1 bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-purple-200 rounded-full text-xs font-medium border border-purple-400/30 hover:scale-105 transition-transform duration-300"
+                          className="px-2 lg:px-3 py-1 bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-purple-200 rounded-full text-xs font-medium border border-purple-400/30 hover:scale-105 transition-transform duration-300"
                           style={{animationDelay: `${index * 0.1}s`}}
                         >
                           {skill}
@@ -298,40 +298,40 @@ const About = () => {
 
               {/* Right side - Interactive Story Tabs */}
               <div className={`space-y-6 flex flex-col ${isVisible ? 'animate-fade-in-delay' : 'opacity-0'}`}>
-                <div className="flex space-x-1 bg-white/10 backdrop-blur-sm p-1 rounded-xl">
+                <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-1 bg-white/10 backdrop-blur-sm p-1 rounded-xl">
                   {tabs.map((tab, index) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(index)}
-                      className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all duration-300 flex-1 ${
+                      className={`flex items-center justify-center sm:justify-start gap-2 px-3 lg:px-4 py-2 lg:py-3 rounded-lg font-medium transition-all duration-300 flex-1 text-sm lg:text-base ${
                         activeTab === index
                           ? 'bg-white/20 backdrop-blur-sm text-purple-400 shadow-md'
                           : 'text-gray-400 hover:text-white'
                       }`}
                     >
                       {tab.icon}
-                      <span className="hidden sm:inline">{tab.label}</span>
+                      <span>{tab.label}</span>
                     </button>
                   ))}
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 min-h-[400px]">
+                <div className="bg-white/10 backdrop-blur-sm p-4 lg:p-8 rounded-2xl border border-white/20 min-h-[300px] lg:min-h-[400px]">
                   {activeTab === 0 && (
                     <div className="space-y-6">
-                      <h4 className="text-2xl font-bold text-white mb-6">
+                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">
                         {tabContent.journey.title}
                       </h4>
-                      <div className="space-y-6">
+                      <div className="space-y-4 lg:space-y-6">
                         {tabContent.journey.content.map((item, index) => (
-                          <div key={index} className="relative pl-8 border-l-2 border-purple-500/50 last:border-l-0">
+                          <div key={index} className="relative pl-6 lg:pl-8 border-l-2 border-purple-500/50 last:border-l-0">
                             <div className="absolute -left-2 top-0 w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-                            <div className="text-sm text-purple-400 font-semibold mb-1">
+                            <div className="text-xs lg:text-sm text-purple-400 font-semibold mb-1">
                               {item.period}
                             </div>
-                            <h5 className="font-semibold text-white mb-2">
+                            <h5 className="font-semibold text-white mb-2 text-sm lg:text-base">
                               {item.title}
                             </h5>
-                            <p className="text-gray-300 text-sm leading-relaxed">
+                            <p className="text-gray-300 text-xs lg:text-sm leading-relaxed">
                               {item.description}
                             </p>
                           </div>
@@ -342,20 +342,20 @@ const About = () => {
 
                   {activeTab === 1 && (
                     <div className="space-y-6">
-                      <h4 className="text-2xl font-bold text-white mb-6">
+                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">
                         {tabContent.philosophy.title}
                       </h4>
-                      <div className="grid gap-4">
+                      <div className="space-y-3 lg:space-y-4">
                         {tabContent.philosophy.principles.map((principle, index) => (
-                          <div key={index} className="flex items-start gap-4 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                          <div key={index} className="flex items-start gap-3 lg:gap-4 p-3 lg:p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
                             <div className="bg-gradient-to-br from-purple-500 to-pink-500 p-2 rounded-lg text-white flex-shrink-0">
                               {principle.icon}
                             </div>
                             <div>
-                              <h5 className="font-semibold text-white mb-1">
+                              <h5 className="font-semibold text-white mb-1 text-sm lg:text-base">
                                 {principle.title}
                               </h5>
-                              <p className="text-gray-300 text-sm">
+                              <p className="text-gray-300 text-xs lg:text-sm">
                                 {principle.description}
                               </p>
                             </div>
@@ -367,19 +367,19 @@ const About = () => {
 
                   {activeTab === 2 && (
                     <div className="space-y-6">
-                      <h4 className="text-2xl font-bold text-white mb-6">
+                      <h4 className="text-xl lg:text-2xl font-bold text-white mb-4 lg:mb-6">
                         {tabContent.impact.title}
                       </h4>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                         {tabContent.impact.metrics.map((metric, index) => (
-                          <div key={index} className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                            <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                          <div key={index} className="text-center p-4 lg:p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                            <div className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
                               {metric.value}
                             </div>
-                            <div className="font-semibold text-white mb-1">
+                            <div className="font-semibold text-white mb-1 text-sm lg:text-base">
                               {metric.label}
                             </div>
-                            <div className="text-xs text-gray-300">
+                            <div className="text-xs lg:text-sm text-gray-300">
                               {metric.description}
                             </div>
                           </div>
@@ -392,44 +392,44 @@ const About = () => {
             </div>
 
             {/* Core Competencies and Key Achievements Side by Side */}
-            <div className="grid lg:grid-cols-2 gap-16 mb-24">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-24">
               {/* Core Competencies */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 relative overflow-hidden h-fit">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/20 relative overflow-hidden h-fit">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
                 
                 <div className="relative">
-                  <div className="text-center mb-8">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <div className="text-center mb-6 lg:mb-8">
+                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 lg:mb-4">
                     Core <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Competencies</span>
                   </h3>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 text-sm lg:text-base">
                     Specialized expertise across the full spectrum of blockchain development and protocol engineering
                   </p>
                 </div>
                 
-                  <div className="space-y-6 mb-8">
+                  <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
                   {highlights.map((highlight, index) => (
-                      <div key={index} className="group flex items-start gap-4 bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:shadow-xl transition-all duration-300 hover:border-blue-400">
+                      <div key={index} className="group flex items-start gap-3 lg:gap-4 bg-white/10 backdrop-blur-sm p-4 lg:p-6 rounded-xl border border-white/20 hover:shadow-xl transition-all duration-300 hover:border-blue-400">
                       {/* Background gradient animation */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
                       
-                        <div className={`bg-gradient-to-br ${highlight.gradient} p-3 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`bg-gradient-to-br ${highlight.gradient} p-2 lg:p-3 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                           <div className="text-white">{highlight.icon}</div>
                         </div>
                         
                         <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-2">
-                              <h4 className="text-base font-bold text-white">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-2">
+                              <h4 className="text-sm lg:text-base font-bold text-white">
                             {highlight.title}
                               </h4>
-                              <span className={`px-2 py-1 bg-gradient-to-r ${highlight.gradient} bg-opacity-20 text-xs font-medium rounded-full text-white`}>
+                              <span className={`px-2 py-1 bg-gradient-to-r ${highlight.gradient} bg-opacity-20 text-xs font-medium rounded-full text-white w-fit`}>
                                 {highlight.stats}
                               </span>
                             </div>
                           
-                            <p className="text-gray-300 leading-relaxed text-sm">
+                            <p className="text-gray-300 leading-relaxed text-xs lg:text-sm">
                             {highlight.description}
                           </p>
                         </div>
@@ -440,7 +440,7 @@ const About = () => {
                   {/* Enhanced Call to Action */}
                   <div className="text-center">
                     <div className="inline-flex flex-col items-center gap-3">
-                      <button className="group bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:via-cyan-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm">
+                      <button className="group bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-xl font-semibold hover:from-blue-700 hover:via-cyan-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-xs lg:text-sm">
                         <span>Explore Technical Expertise</span>
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                       </button>
@@ -453,37 +453,37 @@ const About = () => {
               </div>
 
               {/* Key Achievements */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/20 relative overflow-hidden h-fit">
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/20 relative overflow-hidden h-fit">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
                 
                 <div className="relative">
-                  <div className="text-center mb-8">
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <div className="text-center mb-6 lg:mb-8">
+                    <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 lg:mb-4">
                       Key <span className="bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">Achievements</span>
                     </h3>
-                    <p className="text-gray-300">
+                    <p className="text-gray-300 text-sm lg:text-base">
                       Proven track record of delivering innovative blockchain solutions that drive real-world impact
                     </p>
                   </div>
                   
-                  <div className="space-y-6 mb-8">
+                  <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
                     {achievements.map((achievement, index) => (
-                      <div key={index} className="group flex items-start gap-4 bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:shadow-xl transition-all duration-300 hover:border-purple-400">
-                        <div className="bg-gradient-to-br from-green-500 to-teal-500 p-3 rounded-lg text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <div key={index} className="group flex items-start gap-3 lg:gap-4 bg-white/10 backdrop-blur-sm p-4 lg:p-6 rounded-xl border border-white/20 hover:shadow-xl transition-all duration-300 hover:border-purple-400">
+                        <div className="bg-gradient-to-br from-green-500 to-teal-500 p-2 lg:p-3 rounded-lg text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                           {achievement.icon}
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="text-base font-bold text-white">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-2">
+                            <h4 className="text-sm lg:text-base font-bold text-white">
                               {achievement.title}
                             </h4>
-                            <span className="px-2 py-1 bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 text-xs font-medium rounded-full">
+                            <span className="px-2 py-1 bg-gradient-to-r from-green-500/20 to-teal-500/20 text-green-300 text-xs font-medium rounded-full w-fit">
                               {achievement.badge}
                             </span>
                           </div>
-                          <p className="text-gray-300 leading-relaxed text-sm">
+                          <p className="text-gray-300 leading-relaxed text-xs lg:text-sm">
                             {achievement.description}
                           </p>
                         </div>
@@ -494,7 +494,7 @@ const About = () => {
                   {/* Enhanced Call to Action */}
                   <div className="text-center">
                     <div className="inline-flex flex-col items-center gap-3">
-                      <button className="group bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm">
+                      <button className="group bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-xl font-semibold hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-xs lg:text-sm">
                         <span>Let's Build Something Revolutionary</span>
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                       </button>
