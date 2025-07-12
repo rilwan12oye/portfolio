@@ -111,7 +111,7 @@ const About = () => {
       title: 'Web3 Innovation',
       description: 'Building the next generation of decentralized infrastructure that powers the future of digital interactions',
       gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-      stats: '5+ Years Experience'
+      stats: `${new Date().getFullYear() - 2022}+ Years Experience`
     },
     {
       icon: <Code size={28} />,
