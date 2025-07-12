@@ -274,9 +274,9 @@ const Experience = () => {
                 <div className="w-px h-8 sm:h-12 bg-gray-300 dark:bg-gray-600"></div>
                 <div className="text-center">
                   <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-                    $100M+
+                    100+
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">TVL Managed</div>
+                  <div className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">Successful Projects</div>
                 </div>
               </div>
             </div>
