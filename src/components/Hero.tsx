@@ -17,7 +17,7 @@ const Hero = () => {
   const achievements = [
      { 
       icon: Calendar, 
-      value: "3+", 
+      value:  `${new Date().getFullYear() - 2022}+`, 
       label: "Years Experience", 
       description: "In blockchain development",
       color: "from-pink-400 via-rose-400 to-red-500",
