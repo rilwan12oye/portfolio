@@ -86,7 +86,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-16 lg:pt-20">
       {/* Dynamic Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
