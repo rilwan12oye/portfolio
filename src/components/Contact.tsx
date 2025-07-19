@@ -53,62 +53,6 @@ const Contact = () => {
     });
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-
-
-
-
-
-    
-    event.preventDefault();
-    
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-    
-    // Get the name input value
-    const name = formData.get('name');
-    
-    // Create a custom subject
-    const subject = `${name} sent a message from website`;
-    
-    // Append the custom subject to the form data
-    formData.append('subject', subject);
-    
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-    
-    setResult("Please wait...");
-
-    fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: json
-    })
-    .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-            setResult(json.message);
-        } else {
-            console.log(response);
-            setResult(json.message);
-        }
-    })
-    .catch(error => {
-        console.log(error);
-        setResult("Something went wrong!");
-    })
-    .then(function() {
-        form.reset();
-        setTimeout(() => {
-            setResult("");
-        }, 3000);
-    });
-
-    
-  };
 
   const contactInfo = [
     {
