@@ -25,7 +25,7 @@ const Contact = () => {
 
     // Web3Forms configuration
     const formDataToSend = new FormData();
-    formDataToSend.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY'); // Replace with your Web3Forms access key
+    formDataToSend.append('access_key', '44694e66-ff15-4f3d-8974-534bf2371885'); // Replace with your Web3Forms access key
     formDataToSend.append('name', formData.name);
     formDataToSend.append('email', formData.email);
     formDataToSend.append('subject', formData.subject);
