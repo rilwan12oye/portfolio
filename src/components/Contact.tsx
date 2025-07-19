@@ -5,6 +5,55 @@ const Contact = () => {
   const [result, setResult] = useState("");
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    // Get the name input value
+    const name = formData.get('name');
+    
+    // Create a custom subject
+    const subject = `${name} sent a message from website`;
+    
+    // Append the custom subject to the form data
+    formData.append('subject', subject);
+    
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    
+    setResult("Please wait...");
+
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+            setResult(json.message);
+        } else {
+            console.log(response);
+            setResult(json.message);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        setResult("Something went wrong!");
+    })
+    .then(function() {
+        form.reset();
+        setTimeout(() => {
+            setResult("");
+        }, 3000);
+    });
+  };
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
 
 
@@ -205,6 +254,7 @@ const Contact = () => {
             <div>
               <form onSubmit={onSubmit} className="space-y-4 lg:space-y-6">
                 <input type="hidden" name="access_key" value="44694e66-ff15-4f3d-8974-534bf2371885" />
+                <input type="hidden" name="access_key" value="44694e66-ff15-4f3d-8974-534bf2371885" />
                 <div className="grid sm:grid-cols-2 gap-3 lg:gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
@@ -234,20 +284,6 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    required
-                    className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors resize-none text-sm sm:text-base lg:rows-5"
-                    placeholder="Tell me about your blockchain project..."
-                  />
-                </div>
-                
                 <button
                   type="submit"
                   disabled={result === "Please wait..."}
@@ -257,14 +293,14 @@ const Contact = () => {
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transform hover:scale-105'
                   }`}
                 >
-                  {result === "Sending...." ? (
+                    result === "Please wait..." 
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                       Sending...
                     </>
-                  ) : (
+                  {result === "Sending...." ? (
                     <>
-                      <Send size={16} className="lg:w-5 lg:h-5" />
+                  disabled={result === "Please wait..."}
                       Send Message
                     </>
                   )}
