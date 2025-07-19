@@ -2,57 +2,28 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [result, setResult] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target as HTMLFormElement);
+
+    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
     });
-  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
+    const data = await response.json();
 
-    // Web3Forms configuration
-    const formDataToSend = new FormData();
-    formDataToSend.append('access_key', '44694e66-ff15-4f3d-8974-534bf2371885'); // Replace with your actual Web3Forms access key
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('subject', formData.subject);
-    formDataToSend.append('message', formData.message);
-    formDataToSend.append('from_name', formData.name);
-    formDataToSend.append('redirect', 'false');
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formDataToSend
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-        console.error('Form submission error:', result.message || 'Unknown error');
-      }
-    } catch (error) {
-      console.error('Network error - Please check your Web3Forms access key:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      (event.target as HTMLFormElement).reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
     }
   };
 
@@ -198,7 +169,7 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div>
-              <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
+              <form onSubmit={onSubmit} className="space-y-4 lg:space-y-6">
                 <div className="grid sm:grid-cols-2 gap-3 lg:gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
@@ -208,8 +179,6 @@ const Contact = () => {
                       type="text"
                       id="name"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
                       required
                       className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-sm sm:text-base"
                       placeholder="Your name"
@@ -223,8 +192,6 @@ const Contact = () => {
                       type="email"
                       id="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
                       required
                       className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-sm sm:text-base"
                       placeholder="your@email.com"
@@ -240,8 +207,6 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
                     required
                     className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-sm sm:text-base"
                     placeholder="What's this about?"
@@ -256,8 +221,6 @@ const Contact = () => {
                     id="message"
                     name="message"
                     rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
                     required
                     className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors resize-none text-sm sm:text-base lg:rows-5"
                     placeholder="Tell me about your blockchain project..."
@@ -266,14 +229,14 @@ const Contact = () => {
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={result === "Sending...."}
                   className={`w-full font-medium py-3 lg:py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base ${
-                    isSubmitting 
+                    result === "Sending...." 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transform hover:scale-105'
                   }`}
                 >
-                  {isSubmitting ? (
+                  {result === "Sending...." ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                       Sending...
@@ -287,14 +250,14 @@ const Contact = () => {
                 </button>
                 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {result === "Form Submitted Successfully" && (
                   <div className="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 text-center">
                     ✅ Message sent successfully! I'll get back to you soon.
                   </div>
                 )}
-                {submitStatus === 'error' && (
+                {result && result !== "Sending...." && result !== "Form Submitted Successfully" && (
                   <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-center">
-                    ❌ Failed to send message. Please try again or contact me directly.
+                    ❌ {result}
                   </div>
                 )}
               </form>
