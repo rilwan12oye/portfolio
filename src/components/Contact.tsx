@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Contact = () => {
@@ -19,37 +18,43 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // EmailJS configuration
-    const serviceId = 'service_fpa8nom'; // Replace with your EmailJS service ID
-    const templateId = 'template_htwvf6c'; // Replace with your EmailJS template ID
-    const publicKey = 'j8xiGY2qSeRsPHPF0'; // Replace with your EmailJS public key
+    // Web3Forms configuration
+    const formDataToSend = new FormData();
+    formDataToSend.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY'); // Replace with your Web3Forms access key
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('subject', formData.subject);
+    formDataToSend.append('message', formData.message);
+    formDataToSend.append('from_name', formData.name);
+    formDataToSend.append('redirect', 'false');
 
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      subject: formData.subject,
-      message: formData.message
-    };
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formDataToSend
+      });
 
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
-        console.log('Email sent successfully:', response);
+      const result = await response.json();
+
+      if (result.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-      })
-      .catch((error) => {
-        console.error('Email sending failed:', error);
+      } else {
         setSubmitStatus('error');
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  };
+        console.error('Form submission error:', result);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+    };
 
   const contactInfo = [
     {
