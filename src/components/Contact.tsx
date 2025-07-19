@@ -27,25 +27,51 @@ const Contact = () => {
 
     
     event.preventDefault();
-    setResult("Sending....");
-    const formData = new FormData(event.target as HTMLFormElement);
+    
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    // Get the name input value
+    const name = formData.get('name');
+    
+    // Create a custom subject
+    const subject = `${name} sent a message from website`;
+    
+    // Append the custom subject to the form data
+    formData.append('subject', subject);
+    
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    
+    setResult("Please wait...");
 
-    formData.append("access_key", "44694e66-ff15-4f3d-8974-534bf2371885");
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
+    fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: json
+    })
+    .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+            setResult(json.message);
+        } else {
+            console.log(response);
+            setResult(json.message);
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        setResult("Something went wrong!");
+    })
+    .then(function() {
+        form.reset();
+        setTimeout(() => {
+            setResult("");
+        }, 3000);
     });
-
-    const data = await response.json();
-
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      (event.target as HTMLFormElement).reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
-    }
 
     
   };
@@ -193,6 +219,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div>
               <form onSubmit={onSubmit} className="space-y-4 lg:space-y-6">
+                <input type="hidden" name="access_key" value="44694e66-ff15-4f3d-8974-534bf2371885" />
                 <div className="grid sm:grid-cols-2 gap-3 lg:gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
@@ -223,20 +250,6 @@ const Contact = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    className="w-full px-3 py-2.5 lg:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors text-sm sm:text-base"
-                    placeholder="What's this about?"
-                  />
-                </div>
-                
-                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1.5 lg:mb-2">
                     Message
                   </label>
@@ -252,17 +265,17 @@ const Contact = () => {
                 
                 <button
                   type="submit"
-                  disabled={result === "Sending...."}
+                  disabled={result === "Please wait..."}
                   className={`w-full font-medium py-3 lg:py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base ${
-                    result === "Sending...." 
+                    result === "Please wait..." 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transform hover:scale-105'
                   }`}
                 >
-                  {result === "Sending...." ? (
+                  {result === "Please wait..." ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      Sending...
+                      Please wait...
                     </>
                   ) : (
                     <>
@@ -273,12 +286,12 @@ const Contact = () => {
                 </button>
                 
                 {/* Status Messages */}
-                {result === "Form Submitted Successfully" && (
+                {result && result !== "Please wait..." && !result.includes("went wrong") && (
                   <div className="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 text-center">
-                    ✅ Message sent successfully! I'll get back to you soon.
+                    ✅ {result}
                   </div>
                 )}
-                {result && result !== "Sending...." && result !== "Form Submitted Successfully" && (
+                {result && result.includes("went wrong") && (
                   <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-center">
                     ❌ {result}
                   </div>
