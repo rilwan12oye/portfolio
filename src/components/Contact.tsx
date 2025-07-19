@@ -5,6 +5,27 @@ const Contact = () => {
   const [result, setResult] = useState("");
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
+
+
+
+     const formData = new FormData(form);
+    
+    // Get the name input value
+    const name = formData.get('name');
+    
+    // Create a custom subject
+    const subject = `${name} sent a message from website`;
+    
+    // Append the custom subject to the form data
+    formData.append('subject', subject);
+    
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    
+    result.innerHTML = "Please wait...";
+
+    
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target as HTMLFormElement);
@@ -25,6 +46,8 @@ const Contact = () => {
       console.log("Error", data);
       setResult(data.message);
     }
+
+    
   };
 
   const contactInfo = [
